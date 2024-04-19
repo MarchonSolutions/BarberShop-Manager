@@ -20,7 +20,7 @@ const SettingsStyles = styled.div`
 
   form {
     display: block;
-    margin: 24px auto;
+    margin: 0 auto;
 
     .btn-form {
       display: flex;
@@ -56,6 +56,8 @@ const SettingsStyles = styled.div`
   }
 
   .set-password {
+    margin-top: 8px;
+    
     button {
       display: block;
       margin: auto;

@@ -9,8 +9,8 @@ const NoClientsStyles = styled.div`
     padding: 12px;
 
     img {
-        width: 380px;
-        height: 380px;
+        width: 100%;
+        height: 100%;
     }
 `
 

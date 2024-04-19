@@ -41,22 +41,28 @@ const ClientListStyles = styled.div`
       cursor: pointer;
     }
 
-    h3 {
-      text-align: center;
-      font-size: 20px;
-      font-family: monospace;
-      color: #000000;
-      text-shadow: 2px 2px 10px #0000009d;
-      position: relative;
-      right: 100px;
+    .clients-length {
+      width: 5%;
+      h3 {
+        text-align: center;
+        font-size: 20px;
+        font-family: monospace;
+        color: #000000;
+        text-shadow: 2px 2px 10px #0000009d;
+      }
     }
 
-    .add {
-      background-color: #005700;
-    }
+    .footer-buttons {
+      display: flex;
+      justify-content: center;
+      width: 95%;
+      .add {
+        background-color: #005700;
+      }
 
-    .finish {
-      background-color: #d20101;
+      .finish {
+        background-color: #d20101;
+      }
     }
   }
 `;
@@ -184,11 +190,15 @@ const ClientList = ({
         <NoClients />
       )}
       <footer>
-        <h3>{allClients.length}</h3>
-        <button className="add" onClick={() => setShowAddClient(true)}>
-          Adicionar
-        </button>
-        <button className="finish">Encerrar</button>
+        <div className="clients-length">
+          <h3>{allClients.length}</h3>
+        </div>
+        <div className="footer-buttons">
+          <button className="add" onClick={() => setShowAddClient(true)}>
+            Adicionar
+          </button>
+          <button className="finish">Encerrar</button>
+        </div>
       </footer>
       {showAddClient && (
         <Overlay>
@@ -207,7 +217,9 @@ const ClientList = ({
                 value={service}
                 onChange={(value) => setService(value)}
               />
-              {!validName && <ErroMsg className="erro">*Nome não pode estar vazio*</ErroMsg>}
+              {!validName && (
+                <ErroMsg className="erro">*Nome não pode estar vazio*</ErroMsg>
+              )}
             </div>
             <div className="buttons">
               <button
@@ -243,7 +255,7 @@ const ClientList = ({
                   setName("");
                   setService("");
                   setPrice("");
-                  setValidName(true)
+                  setValidName(true);
                   setShowAddClient(false);
                 }}
               >
@@ -270,7 +282,11 @@ const ClientList = ({
                 value={service}
                 onChange={(value) => setService(value)}
               />
-              {!validName && <ErroMsg className="erro">*Novo nome não pode estar vazio*</ErroMsg>}
+              {!validName && (
+                <ErroMsg className="erro">
+                  *Novo nome não pode estar vazio*
+                </ErroMsg>
+              )}
             </div>
             <div className="buttons">
               <button
@@ -308,7 +324,7 @@ const ClientList = ({
                   setService("");
                   setPrice("");
                   updateEditClient(null);
-                  setValidName(true)
+                  setValidName(true);
                   setShowEditClient(false);
                 }}
               >

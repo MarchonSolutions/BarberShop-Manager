@@ -14,7 +14,9 @@ export const MainContent = styled.main`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 74vh;
+    height: 67vh;
+
+    margin-bottom: 24px;
 `
 
 export const Overlay = styled.div`

@@ -129,7 +129,6 @@ function App() {
 
   const onSetAccess = (boolean) => {
     setAccess(boolean)
-    console.log('acesso permitido')
   }
 
   return (
