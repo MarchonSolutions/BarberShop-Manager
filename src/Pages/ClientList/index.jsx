@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import NoClients from "./NoClients";
 import ErroMsg from "../../components/ErroMsg";
+import DayFinished from "../../components/DayFinished";
+import EnterPassword from "../../components/EnterPassword";
 
 const ClientListStyles = styled.div`
   width: 90%;
@@ -74,6 +76,8 @@ const MyClients = styled.div`
   height: 400px;
   width: 90%;
   background-color: #fff;
+  background-image: url(/images/barber-pattern.png);
+  background-repeat: repeat;
   border-radius: 10px;
   border: none;
 
@@ -138,13 +142,22 @@ const ClientList = ({
   allServices,
   allClients,
   addClients,
+  setAllClients,
+  setFinishedClients,
   editClient,
   updateEditClient,
   onDeleteClient,
   addFinishedClients,
+  totalClients,
+  prices,
+  mainPassword,
+  setAccess
 }) => {
   const [showAddClient, setShowAddClient] = useState(false);
   const [showEditClient, setShowEditClient] = useState(false);
+  const [showFinishedDay, setShowFinishedDay] = useState(false);
+  const [accessFinish, setAccessFinish] = useState(false);
+
   const [name, setName] = useState("");
   const [service, setService] = useState("");
   const [price, setPrice] = useState("");
@@ -166,6 +179,18 @@ const ClientList = ({
     updateEditClient(client);
     setShowEditClient(true);
   };
+
+  const onFinish = () => {
+    if(mainPassword) {
+      setAccessFinish(true)
+    } else {
+      setShowFinishedDay(true)
+    }
+  }
+
+  const onShowFinishedDay = (boolean) => {
+    setShowFinishedDay(boolean)
+  }
 
   return (
     <ClientListStyles>
@@ -197,7 +222,12 @@ const ClientList = ({
           <button className="add" onClick={() => setShowAddClient(true)}>
             Adicionar
           </button>
-          <button className="finish">Encerrar</button>
+          <button 
+            className="finish"
+            onClick={() => onFinish()}
+          >
+              Encerrar
+          </button>
         </div>
       </footer>
       {showAddClient && (
@@ -333,6 +363,23 @@ const ClientList = ({
             </div>
           </MyClients>
         </Overlay>
+      )}
+      {accessFinish && !showFinishedDay && (
+        <EnterPassword 
+          mainPassword={mainPassword}
+          setAccess={setAccess}
+          setAccessFinished={ boolean => setAccessFinish(boolean)}
+          setShowFinishedDay={boolean => onShowFinishedDay(boolean)}
+        />
+      )}
+      {showFinishedDay && (
+        <DayFinished 
+          totalClients={totalClients} prices={prices} 
+          setAccessFinished={ boolean => setAccessFinish(boolean)}
+          setShowFinishedDay={boolean => onShowFinishedDay(boolean)}
+          setAllClients={setAllClients}
+          setFinishedClients={setFinishedClients}
+        />
       )}
     </ClientListStyles>
   );

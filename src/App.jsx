@@ -21,6 +21,7 @@ function App() {
   const [prices, setPrices] = useState([]);
   const [mainPassword, setMainPassword] = useState('');
   const [access, setAccess] = useState(false)
+  const [showFinishedDay, setShowFinishedDay] = useState('')
 
   useEffect(() => {
     const refreshServices = localStorage.getItem("services");
@@ -149,6 +150,12 @@ function App() {
                   allClients={allClients}
                   onDeleteClient={onDeleteClient}
                   addFinishedClients={addFinishedClients}
+                  totalClients={ finishedClients.length }
+                  prices={prices}
+                  mainPassword={mainPassword}
+                  setAccess={setAccess}
+                  setAllClients={client => setAllClients(client)}
+                  setFinishedClients={ client => setFinishedClients(client) }
                 />
               }
             />
@@ -163,6 +170,7 @@ function App() {
                   onDeleteService={onDeleteService}
                   access={access}
                   setAccess={ boolean => onSetAccess(boolean)}
+                  setShowFinishedDay={setShowFinishedDay}
                 />
               }
             />
@@ -176,6 +184,7 @@ function App() {
                   finishedClients={finishedClients}
                   onDeleteFinished={onDeleteFinished}
                   prices={prices}
+                  setShowFinishedDay={setShowFinishedDay}
                 />
               }
             />

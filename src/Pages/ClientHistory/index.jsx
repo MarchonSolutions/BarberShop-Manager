@@ -20,7 +20,8 @@ const HistoryStyles = styled.div`
     width: 0;
   }
 
-  h1, h2 {
+  h1,
+  h2 {
     text-align: center;
   }
 
@@ -29,44 +30,52 @@ const HistoryStyles = styled.div`
   }
 `;
 
-const ClientHistory = ({finishedClients, onDeleteFinished, prices, access, setAccess, mainPassword }) => {
-
-  const [totalPrice, setTotalPrice] = useState([]) 
+const ClientHistory = ({
+  finishedClients,
+  onDeleteFinished,
+  prices,
+  access,
+  setAccess,
+  mainPassword,
+  setShowFinishedDay
+}) => {
+  const [totalPrice, setTotalPrice] = useState([]);
 
   useEffect(() => {
     const totalPriceUpdate = prices.reduce((ac, value) => {
-      return ac + value
-    }, 0)
-    setTotalPrice(totalPriceUpdate.toFixed(2).replace('.', ','))
-  }, [prices])
+      return ac + value;
+    }, 0);
+    setTotalPrice(totalPriceUpdate.toFixed(2).replace(".", ","));
+  }, [prices]);
 
   return (
     <HistoryStyles>
-        <h1>Histórico de Clientes</h1>
-        <ul>
-        {finishedClients.map( client => {
+      <h1>Histórico de Clientes</h1>
+      <ul>
+        {finishedClients.map((client) => {
           return (
-              <FinishedClient
-                key={client.id}
-                id={client.id}
-                name={client.name}
-                service={client.service}
-                price={client.price}
-                onDeleteFinished={onDeleteFinished}
-              />
-          )
+            <FinishedClient
+              key={client.id}
+              id={client.id}
+              name={client.name}
+              service={client.service}
+              price={client.price}
+              onDeleteFinished={onDeleteFinished}
+            />
+          );
         })}
-        </ul>
-        <h2>{`Total: R$${totalPrice}`}</h2>
-        {!access && mainPassword &&
-          <EnterPassword
-            mainPassword={mainPassword}
-            access={access}
-            setAccess={setAccess}
+      </ul>
+      <h2>{`Total: R$${totalPrice}`}</h2>
+      {!access && mainPassword && (
+        <EnterPassword
+          mainPassword={mainPassword}
+          access={access}
+          setAccess={setAccess}
+          setShowFinishedDay={setShowFinishedDay}
         />
-        }
+      )}
     </HistoryStyles>
-  ); 
+  );
 };
 
 export default ClientHistory;

@@ -12,6 +12,13 @@ const NoClientsStyles = styled.div`
         width: 100%;
         height: 100%;
     }
+
+    @media screen and (min-width: 600px){
+        img {
+            width: 398px;
+            height: 398px;
+        }
+    }   
 `
 
 const NoClients = () => {

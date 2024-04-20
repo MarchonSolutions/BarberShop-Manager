@@ -71,6 +71,8 @@ const MyServices = styled.div`
   height: 400px;
   width: 90%;
   background-color: #fff;
+  background-image: url(/images/barber-pattern.png);
+  background-repeat: repeat;
   border-radius: 10px;
   border: none;
 
@@ -103,7 +105,8 @@ const BarberSettings = ({
   allServices,
   onDeleteService,
   access,
-  setAccess
+  setAccess,
+  setShowFinishedDay
 }) => {
   const [showServicesOverlay, setShowServicesOverlay] = useState(false);
   const [name, setName] = useState("");
@@ -262,6 +265,7 @@ const BarberSettings = ({
           mainPassword={mainPassword}
           access={access}
           setAccess={setAccess}
+          setShowFinishedDay={setShowFinishedDay}
         />
       }
     </SettingsStyles>
