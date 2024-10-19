@@ -32,7 +32,7 @@ const NavFooter = ({access, setAccess}) => {
     <NavStyles>
       <ul>
         <li>
-          <Link to="/settings">
+          <Link to="settings">
             <IoIosSettings
               size={55}
               color={`${location.pathname === '/settings' ? '#FDCB19' : '#fff'}`}
@@ -55,7 +55,7 @@ const NavFooter = ({access, setAccess}) => {
           </Link>
         </li>
         <li>
-          <Link to="/history">
+          <Link to="history">
             <TbHistoryToggle
               size={55}
               color={`${location.pathname === '/history' ? '#FDCB19' : '#fff'}`}
